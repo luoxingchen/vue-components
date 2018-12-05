@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-crop-image v-model="url" ref="crop">
+      上传
+    </v-crop-image>
+    <button @click="crop">裁剪图片</button>
+    <img :src="src" alt="" style="width: 100px">
+    <img :src="url" v-if="src" alt="">
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import VCropImage from "@/components/upload/VCropImage.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    VCropImage
+  },
+  data() {
+    return {
+      url: require("../assets/logo.png"), // 可以设置默认值
+      src: ""
+    };
+  },
+  methods: {
+    crop() {
+      this.src = this.$refs.crop.canvasToImage(); // 获取裁剪后的图片路径
+    }
   }
 };
 </script>
