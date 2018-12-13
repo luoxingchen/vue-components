@@ -3,6 +3,7 @@
 ## 组件
 * VCropImage  支持滑动选择图片的可视区域 裁剪可视区域图片 
 * canvasToImage html转换成图片 
+* form 表单类组件
 
 ## api
 #### 基于axios封装的支持restful风格 
