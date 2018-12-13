@@ -8,13 +8,16 @@
     <div class="form">
       <v-form :model="model" :rules="rules" ref="form">
         <v-form-item prop="name">
-          <v-input v-model="model.name"></v-input>
+          <v-input v-model="model.name" placeholder="输入姓名"></v-input>
+        </v-form-item>
+        <v-form-item>
+          <v-input v-model="model.code" placeholder="验证码" show-code></v-input>
         </v-form-item>
         <v-form-item prop="age">
-          <v-input v-model="model.age"></v-input>
+          <v-input v-model="model.age" placeholder="年龄"></v-input>
         </v-form-item>
         <v-form-item prop="age">
-          <v-select v-model="model.age">
+          <v-select v-model="model.age" placeholder="选择年龄">
             <option value="1">1</option>
             <option value="2">2</option>
           </v-select>
