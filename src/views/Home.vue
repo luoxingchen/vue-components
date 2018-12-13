@@ -5,14 +5,31 @@
     </v-crop-image>
     <button @click="crop">裁剪图片</button>
     <img :src="src" alt="" style="width: 100px">
-    <img :src="url" v-if="src" alt="">
+    <div class="form">
+      <v-form :model="model" :rules="rules" ref="form">
+        <v-form-item prop="name">
+          <v-input v-model="model.name"></v-input>
+        </v-form-item>
+        <v-form-item prop="age">
+          <v-input v-model="model.age"></v-input>
+        </v-form-item>
+        <v-form-item prop="age">
+          <v-select v-model="model.age">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </v-select>
+        </v-form-item>
+        <v-form-item>
+          <v-button @click="handleClick">确认</v-button>
+        </v-form-item>
+      </v-form>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import VCropImage from "@/components/upload/VCropImage.vue";
-
 export default {
   name: "home",
   components: {
@@ -21,12 +38,26 @@ export default {
   data() {
     return {
       url: require("../assets/logo.png"), // 可以设置默认值
-      src: ""
+      src: "",
+      model: {
+        name: "",
+        age: ""
+      },
+      rules: {
+        name: { required: true, message: "不能为空" },
+        age: { required: true, message: "不能为空" },
+      }
     };
   },
   methods: {
     crop() {
       this.src = this.$refs.crop.canvasToImage(); // 获取裁剪后的图片路径
+    },
+    handleClick() {
+      console.log("this.$refs.form", this.$refs.form);
+      this.$refs.form.validate(valid => {
+        if (!valid) return;
+      });
     }
   }
 };

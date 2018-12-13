@@ -138,12 +138,6 @@ function formatUrl(url, dataModel, options = {}) {
           }
         }
       });
-    } else {
-      url.split("{").forEach(function(item) {
-        if (item.indexOf("}") === item.length - 1) {
-          url = url.replace("{" + item, "");
-        }
-      });
     }
     return url;
   } else {
